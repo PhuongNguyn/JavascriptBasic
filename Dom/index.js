@@ -1,29 +1,30 @@
-// Lấy ra thẻ input
-const input = document.getElementById("input")
-// lấy ra thẻ button
-const button = document.getElementById("button")
-// Lấy ra box
-const images = ['link1', 'link2', 'link3']
-const box = document.getElementById("box")
+const btnAdd = document.getElementById("btn-add")
+const tbody = document.getElementById("table-body")
 
-for(let i = 0; i < images.length; i++){
-    const img = document.createElement('img')
-    img.src = images[i]
-    box.appendChild(img)
-}
 
-let isShow = false
+let data = []
 
-function toggleInput(){
-    if(isShow == true){
-        isShow = false
-        input.style.display = 'none'
-        button.innerText = 'show input'
-    }else{
-        isShow = true
-        input.style.display = 'block'
-        button.innerText = 'close input'
+function loadData() {
+    let string = ""
+    for (let i = 0; i < data.length; i++) {
+        string = string + `<tr>
+                            <td>${(i + 1)}</td>
+                            <td>${data[i]}</td>
+                            </tr>`
     }
+    tbody.innerHTML = string
 }
+
+btnAdd.onclick = function () {
+    const input = document.getElementById("input").value
+    if (input.length == 0) {
+        alert("Name is empty")
+        return;
+    }
+    data.push(input)
+    loadData()
+}
+
+
 
 
